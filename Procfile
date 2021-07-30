@@ -1,1 +1,1 @@
-web: bin/gymtranning
+web: bin/gymtranning-api
