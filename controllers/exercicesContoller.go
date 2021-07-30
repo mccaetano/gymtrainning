@@ -10,6 +10,19 @@ import (
 	"github.com/mccaetano/gymtranning/utils"
 )
 
+// ExercisesGet godoc
+// @Summary Get exercises
+// @Tags Exercises
+// @Description Get exercises
+// @ID ExercisesGet
+// @Accept  json
+// @Produce  json
+// @Param name query string false "Name of exercises"
+// @Success 200 {array} models.Exercises
+// @Failure 400,404 {object} utils.Error
+// @Failure 500 {object} utils.Error
+// @Failure default {object} utils.Error
+// @Router /exercises [get]
 func ExercisesGet(c *gin.Context) {
 	log.Println("(ExercisesGet - init)")
 	name, _ := c.Params.Get("name")
@@ -23,6 +36,19 @@ func ExercisesGet(c *gin.Context) {
 	log.Println("(ExercisesGet - finish)")
 }
 
+// ExercisesGetById godoc
+// @Summary Get exercises by id
+// @Tags Exercises
+// @Description Get exercises by id
+// @ID ExercisesGetById
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Id of exercises"
+// @Success 200 {object} models.Exercises
+// @Failure 400,404 {object} utils.Error
+// @Failure 500 {object} utils.Error
+// @Failure default {object} utils.Error
+// @Router /exercises/{id} [get]
 func ExercisesGetById(c *gin.Context) {
 	log.Println("(ExercisesGetById - init)")
 	paramId, res := c.Params.Get("id")
@@ -42,6 +68,19 @@ func ExercisesGetById(c *gin.Context) {
 	log.Println("(ExercisesGetById - finish)")
 }
 
+// ExercisesPost godoc
+// @Summary Create exercises
+// @Tags Exercises
+// @Description Create exercises
+// @ID ExercisesPost
+// @Accept  json
+// @Produce  json
+// @Param body body models.Exercises true "Exercises Model"
+// @Success 200 {object} models.Exercises
+// @Failure 400,404 {object} utils.Error
+// @Failure 500 {object} utils.Error
+// @Failure default {object} utils.Error
+// @Router /exercises [post]
 func ExercisesPost(c *gin.Context) {
 	log.Println("(ExercisesPost - init)")
 	exercises := models.Exercises{}
@@ -60,6 +99,19 @@ func ExercisesPost(c *gin.Context) {
 	log.Println("(ExercisesPost - finish)")
 }
 
+// ExercisesPut godoc
+// @Summary Updade exercises
+// @Tags Exercises
+// @Description Updade exercises
+// @ID ExercisesPut
+// @Accept  json
+// @Produce  json
+// @Param body body models.Exercises true "Exercises Model"
+// @Success 200 {object} models.Exercises
+// @Failure 400,404 {object} utils.Error
+// @Failure 500 {object} utils.Error
+// @Failure default {object} utils.Error
+// @Router /exercises [put]
 func ExercisesPut(c *gin.Context) {
 	log.Println("(ExercisesPut - init)")
 	paramId, res := c.Params.Get("id")
@@ -85,6 +137,19 @@ func ExercisesPut(c *gin.Context) {
 	log.Println("(ExercisesPut - finish)")
 }
 
+// ExercisesDelete godoc
+// @Summary Delete exercises by id
+// @Tags Exercises
+// @Description Delete exercises by id
+// @ID ExercisesDelete
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Id of exercises"
+// @Success 200 {object} models.Exercises
+// @Failure 400,404 {object} utils.Error
+// @Failure 500 {object} utils.Error
+// @Failure default {object} utils.Error
+// @Router /exercises/{id} [delete]
 func ExercisesDelete(c *gin.Context) {
 	log.Println("(ExercisesDelete - init)")
 	c.JSON(http.StatusNoContent, gin.H{})

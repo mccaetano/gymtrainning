@@ -9,6 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/mccaetano/gymtranning/controllers"
 	"github.com/mccaetano/gymtranning/utils"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 type headers struct {
@@ -24,6 +26,11 @@ func Routes() {
 	routes := gin.New()
 	routes.Use(gin.Logger())
 	routes.Use(gin.CustomRecovery(recovery))
+
+	routes.GET("/", func(c *gin.Context) {
+		c.Redirect(http.StatusPermanentRedirect, "/swagger/index.html")
+	})
+	routes.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	basePathNoAuth := routes.Group("/gymtranning/v1/api")
 	basePathNoAuth.POST("/login", controllers.LoginPost)
@@ -43,6 +50,12 @@ func Routes() {
 	basePathAuth.POST("/gym/profile", controllers.GymProfilePost)
 	basePathAuth.PUT("/gym/profile/:id", controllers.GymProfilePut)
 	basePathAuth.DELETE("/gym/profile/:id", controllers.GymProfileDelete)
+
+	basePathAuth.GET("/gym/teachers", controllers.GymProfileGet)
+	basePathAuth.GET("/gym/teachers/:id", controllers.GymProfileGetById)
+	basePathAuth.POST("/gym/teachers", controllers.GymProfilePost)
+	basePathAuth.PUT("/gym/teachers/:id", controllers.GymProfilePut)
+	basePathAuth.DELETE("/gym/teachers/:id", controllers.GymProfileDelete)
 
 	basePathAuth.GET("/user/profile", controllers.UserProfileGet)
 	basePathAuth.GET("/user/profile/:id", controllers.UserProfileGetById)

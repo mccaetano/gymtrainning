@@ -1,0 +1,853 @@
+basePath: /gymtranning/v1/api
+definitions:
+  controllers.Token:
+    properties:
+      token:
+        type: string
+    type: object
+  models.Exercises:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.GymProfile:
+    properties:
+      address:
+        type: string
+      celPhone:
+        type: string
+      id:
+        type: integer
+      isWhatsApp:
+        type: boolean
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
+  models.Teacher:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.UserLogin:
+    properties:
+      id:
+        type: integer
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.UserProfile:
+    properties:
+      address:
+        type: string
+      celPhone:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
+  utils.Error:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    type: object
+host: gymtrainning-api.herokuapp.com/
+info:
+  contact:
+    email: marcelo.cheruti@gmail.com
+    name: MCCAETANO
+    url: http://www.swagger.io/support
+  description: Show your trainning and manage your trainning
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Gym Trainning
+  version: "1.0"
+paths:
+  /exercises:
+    get:
+      consumes:
+      - application/json
+      description: Get exercises
+      operationId: ExercisesGet
+      parameters:
+      - description: Name of exercises
+        in: query
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Exercises'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Get exercises
+      tags:
+      - Exercises
+    post:
+      consumes:
+      - application/json
+      description: Create exercises
+      operationId: ExercisesPost
+      parameters:
+      - description: Exercises Model
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Exercises'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Exercises'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Create exercises
+      tags:
+      - Exercises
+    put:
+      consumes:
+      - application/json
+      description: Updade exercises
+      operationId: ExercisesPut
+      parameters:
+      - description: Exercises Model
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Exercises'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Exercises'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Updade exercises
+      tags:
+      - Exercises
+  /exercises/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete exercises by id
+      operationId: ExercisesDelete
+      parameters:
+      - description: Id of exercises
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Exercises'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Delete exercises by id
+      tags:
+      - Exercises
+    get:
+      consumes:
+      - application/json
+      description: Get exercises by id
+      operationId: ExercisesGetById
+      parameters:
+      - description: Id of exercises
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Exercises'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Get exercises by id
+      tags:
+      - Exercises
+  /gym:
+    get:
+      consumes:
+      - application/json
+      description: Get Teacher
+      operationId: TeacherGet
+      parameters:
+      - description: Name of Teacher
+        in: query
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Teacher'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Get Teacher
+      tags:
+      - Teacher
+  /gym/profile:
+    get:
+      consumes:
+      - application/json
+      description: Get User
+      operationId: UserProfileGet
+      parameters:
+      - description: Name of User
+        in: query
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.UserProfile'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Get User
+      tags:
+      - UserProfile
+    post:
+      consumes:
+      - application/json
+      description: Create Gym
+      operationId: GymProfilePost
+      parameters:
+      - description: GymProfile Model
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.GymProfile'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GymProfile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Create Gym
+      tags:
+      - GymProfile
+    put:
+      consumes:
+      - application/json
+      description: Updade Gym
+      operationId: GymProfilePut
+      parameters:
+      - description: GymProfile Model
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.GymProfile'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GymProfile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Updade Gym
+      tags:
+      - GymProfile
+  /gym/profile/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Gym by id
+      operationId: GymProfileDelete
+      parameters:
+      - description: Id of Gym
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GymProfile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Delete Gym by id
+      tags:
+      - GymProfile
+    get:
+      consumes:
+      - application/json
+      description: Get Gym by id
+      operationId: GymProfileGetById
+      parameters:
+      - description: Id of Gym
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GymProfile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Get Gym by id
+      tags:
+      - GymProfile
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Login by username and password
+      operationId: LoginPost
+      parameters:
+      - description: User Login
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserLogin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Token'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Login user is Applocation
+      tags:
+      - Login
+  /teacher:
+    post:
+      consumes:
+      - application/json
+      description: Create Teacher
+      operationId: TeacherPost
+      parameters:
+      - description: Teacher Model
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Teacher'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Teacher'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Create Teacher
+      tags:
+      - Teacher
+    put:
+      consumes:
+      - application/json
+      description: Updade Teacher
+      operationId: TeacherPut
+      parameters:
+      - description: Teacher Model
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Teacher'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Teacher'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Updade Teacher
+      tags:
+      - Teacher
+  /teacher/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Teacher by id
+      operationId: TeacherDelete
+      parameters:
+      - description: Id of Teacher
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Teacher'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Delete Teacher by id
+      tags:
+      - Teacher
+    get:
+      consumes:
+      - application/json
+      description: Get Teacher by id
+      operationId: TeacherGetById
+      parameters:
+      - description: Id of Teacher
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Teacher'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Get Teacher by id
+      tags:
+      - Teacher
+  /user/profile:
+    post:
+      consumes:
+      - application/json
+      description: Create User
+      operationId: UserProfilePost
+      parameters:
+      - description: UserProfile Model
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserProfile'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserProfile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Create User
+      tags:
+      - UserProfile
+    put:
+      consumes:
+      - application/json
+      description: Updade User
+      operationId: UserProfilePut
+      parameters:
+      - description: UserProfile Model
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserProfile'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserProfile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Updade User
+      tags:
+      - UserProfile
+  /user/profile/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete User by id
+      operationId: UserProfileDelete
+      parameters:
+      - description: Id of User
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserProfile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Delete User by id
+      tags:
+      - UserProfile
+    get:
+      consumes:
+      - application/json
+      description: Get User by id
+      operationId: UserProfileGetById
+      parameters:
+      - description: Id of User
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserProfile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Error'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/utils.Error'
+      summary: Get User by id
+      tags:
+      - UserProfile
+securityDefinitions:
+  OAuth2Password:
+    flow: password
+    scopes:
+      admin: ' Grants read and write access to administrative information'
+      read: ' Grants read access'
+      write: ' Grants write access'
+    tokenUrl: https://example.com/oauth/token
+    type: oauth2
+swagger: "2.0"

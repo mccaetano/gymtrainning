@@ -9,6 +9,23 @@ import (
 	"github.com/mccaetano/gymtranning/utils"
 )
 
+type Token struct {
+	Token string `json:"token"`
+}
+
+// LoginPost godoc
+// @Summary Login user is Applocation
+// @Tags Login
+// @Description Login by username and password
+// @ID LoginPost
+// @Accept  json
+// @Produce  json
+// @Param body body models.UserLogin true "User Login"
+// @Success 200 {object} controllers.Token
+// @Failure 400,404 {object} utils.Error
+// @Failure 500 {object} utils.Error
+// @Failure default {object} utils.Error
+// @Router /login [post]
 func LoginPost(c *gin.Context) {
 	log.Println("(loginPost - init)")
 
@@ -24,6 +41,7 @@ func LoginPost(c *gin.Context) {
 		log.Println("(loginPost - finish)")
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"tokem": tokem})
+	response := Token{Token: tokem}
+	c.JSON(http.StatusOK, response)
 	log.Println("(loginPost - finish)")
 }
