@@ -1,1 +1,1 @@
-# gymTranning-api
+# gymtrainning-api

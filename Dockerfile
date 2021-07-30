@@ -19,4 +19,4 @@ ENV HOME /app
 WORKDIR /app
 RUN useradd -m heroku
 USER heroku
-CMD /app/bin/gymtranning
+CMD /app/bin/gymtrainning-api
